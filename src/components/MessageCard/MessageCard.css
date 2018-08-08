@@ -1,0 +1,10 @@
+.messageCard {
+    font-size: 30px;
+    color: white;
+    height: 100vh;
+    overflow: auto;
+    text-align: center;
+}
+
+
+

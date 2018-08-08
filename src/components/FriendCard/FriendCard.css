@@ -1,0 +1,21 @@
+.card {
+  color: white;
+  border-radius: 2px;
+  height: 199px;
+  margin: 10px;
+  float: left;
+width: 199px;
+  
+  
+}
+
+.card > .img-container {
+  height: 100%;
+ 
+
+}
+.card > .img-container > img {
+  width: 100%;
+}
+
+

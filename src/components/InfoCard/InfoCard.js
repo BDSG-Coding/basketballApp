@@ -21,13 +21,17 @@ if (this.props.countDown) {
       Height: {this.props.height} <br />
       Weight: {this.props.weight} <br />
      
-      Midrange: {this.props.midShot} <br />
+      Mid-range: {this.props.midShot} <br />
       Three Pointer: {this.props.threePts} < br />
-      Post Shot: {this.props.postShot} <br />
+      Inside Shot: {this.props.insideShot} <br />
       Layup: {this.props.layup} <br />
       Dunk: {this.props.dunk} <br />
-      Rebounding: {this.props.rebounding} <br /> 
-      Defense: {this.props.defense} <br />
+      Ball Handling: {this.props.ballHandle} <br />
+      Rebound: {this.props.rebounding} <br /> 
+      Block: {this.props.block} <br />
+      Shot Contest: {this.props.shotCont} < br />
+      Steal: {this.props.steal} <br />
+      Athleticism: {this.props.athleticism} <br />
 <hr />
       <button onClick={this.props.onClick}>Select</button>
      </div>

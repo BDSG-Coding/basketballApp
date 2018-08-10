@@ -1,4 +1,25 @@
+.imageCard {
+   
+border-style: solid;
+border-width: 1px;
+border-color: white;
 
-
+    height: 199px;
+   
+    float: left;
+  width: 199px;
+    
+    
+  }
+  
+  .imageCard > .img-container {
+   
+   height: 100%;
+  
+  }
+  .imageCard > .img-container > img {
+    width: 100%;
+  }
+  
 
 

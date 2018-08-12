@@ -24,18 +24,18 @@ const players = [{
   heightInches: 78,
   weight: "195 lbs",
   position: "Shooting Guard",
-  midShot: 96,
+  midShot: 97,
   threePts: 80,
-  insideShot: 99,
+  insideShot: 89,
   layup: 99,
   dunk: 99,
   ballHandle: 94,
-  rebounding: 79,
-  block: 81,
-  shotCont: 90,
+  rebounding: 71,
+  block: 85,
+  shotCont: 92,
   steal: 99,
   athleticism: 97,
-  plays: ["midShot", "fadeAway", "layup", "layup", "dunk", "fadeAway", "fadeAway", "layup", "dunk", "dunk", "dunk"],
+  plays: ["midShot", "midShot", "fadeAway", "fadeAway", "layup", "layup", "dunk", "dunk"],
   moves: ["stutter steps ...", "does a spin move!", "dribbles behind the back ...", "dribbles between the legs ...", "fakes left goes right!", "fakes right goes left!", "hesitates ...", "does a crossover!", "turns his back to the basket ...", "talks some trash ..."],
 }, {
   nameFirst: 'Hakeem',
@@ -54,13 +54,13 @@ const players = [{
   heightInches: 84,
   weight: "255 lbs",
   position: "Center",
-  midShot: 95,
+  midShot: 93,
   threePts: 70,
   insideShot: 97,
-  layup: 92,
-  dunk: 90,
-  ballHandle: 70,
-  rebounding: 97,
+  layup: 91,
+  dunk: 93,
+  ballHandle: 73,
+  rebounding: 94,
   block: 99,
   shotCont: 99,
   steal: 92,
@@ -85,12 +85,12 @@ const players = [{
   weight: "250 lbs",
   position: "Small Forward",
   midShot: 93,
-  threePts: 85,
+  threePts: 88,
   insideShot: 94,
   layup: 98,
   dunk: 91,
   ballHandle: 79,
-  rebounding: 75,
+  rebounding: 79,
   block: 83,
   shotCont: 89,
   steal: 81,
@@ -119,10 +119,10 @@ const players = [{
   dunk: 98,
   ballHandle: 67,
   rebounding: 98,
-  block: 89,
-  shotCont: 86,
+  block: 92,
+  shotCont: 90,
   steal: 72,
-  athleticism: 81,
+  athleticism: 87,
   plays: ["layup", "dunk", "lowPost", "lowPost", "lowPost", "hookShot", "hookShot"],
   moves: ["pushes the defender ...", "backs into the defender ...", "backs into the defender ...", "does his tornado move!"],
 },
@@ -131,6 +131,9 @@ const players = [{
   nameLast: 'Curry',
 
   portrait: './images/curry/curry_select.jpg',
+  layupImg: './images/curry/curry_layup.jpg',
+  midShotImg: './images/curry/curry_midShot.jpg',
+  ball: './images/curry/curry_ball.jpg',
 
   height: "6-3",
   heightInches: 75,
@@ -142,18 +145,24 @@ const players = [{
   layup: 92,
   dunk: 40,
   ballHandle: 98,
-  rebounding: 71,
-  block: 68,
-  shotCont: 81,
+  rebounding: 70,
+  block: 70,
+  shotCont: 88,
   steal: 94,
   athleticism: 93,
-  plays: ["threePts", "threePts", "threePts", "midShot", "midShot", "layup", "layup", "lowPost", "threePts"],
+  plays: ["threePts", "threePts", "threePts", "threePts", "midShot", "midShot", "layup", "layup"],
   moves: ["does a crossover!", "hesitates ...", "dribbles behind the back!", "stutter steps ...", "dribbles between the legs ...", "does a spin move!"],
 },{
   nameFirst: 'Kevin',
   nameLast: 'Durant',
 
   portrait: './images/durant/durant_select.jpg',
+  ball: './images/durant/durant_ball.jpg',
+  midShotImg: './images/durant/durant_midShot.jpg',
+  dunkImg: './images/durant/durant_dunk.jpg',
+  layupImg: './images/durant/durant_layup.jpg',
+  fadeAwayImg: './images/durant/durant_fadeAway.jpg',
+
 
   height: "6-11",
   heightInches: 83,
@@ -161,16 +170,16 @@ const players = [{
   position: "Power Forward",
   midShot: 98,
   threePts: 98,
-  insideShot: 98,
-  layup: 98,
-  dunk: 90,
+  insideShot: 91,
+  layup: 88,
+  dunk: 88,
   ballHandle: 93,
-  rebounding: 82,
-  block: 85,
+  rebounding: 85,
+  block: 87,
   shotCont: 90,
-  steal: 85,
-  athleticism: 93,
-  plays: ["midShot", "threePts", "threePts", "threePts", "lowPost", "layup", "layup", "dunk", "dunk", "fadeAway", "fadeAway"],
+  steal: 78,
+  athleticism: 90,
+  plays: ["threePts", "threePts", "threePts", "midShot", "fadeAway", "fadeAway", "layup", "dunk", "dunk"],
   moves: ["hesitates ...", "stutter steps ...", "does a crossover!", "fakes left goes right!", "fakes right goes left!"],
 }];
 
@@ -284,25 +293,25 @@ class App extends React.Component {
   }
 
   ballHandling(player) {
-    console.log("handleBall");
+    console.log("ballHandling");
     let state = Object.assign({}, this.state);
 
     if (state.selectedPlayers.indexOf(player) === 0) {
       let stealMod = (player.ballHandle + player.athleticism - state.selectedPlayers[1].steal - state.selectedPlayers[1].athleticism) / 100;
 
       let keepBall = .90 + stealMod;
-      console.log(keepBall);
+      console.log("P1 "+keepBall);
       if (keepBall > .95) {
         keepBall = .95;
       }
-      if (keepBall < .75 && keepBall > .5) {
-        keepBall = .75;
+      if (keepBall < .80 && keepBall > .5) {
+        keepBall = .80;
       }
       if (keepBall <= .5) {
-        keepBall = .6;
+        keepBall = .65;
       }
       console.log(keepBall);
-      if (Math.random() > .5) {
+      if (Math.random() < .55) {
 
         if (Math.random() > keepBall) {
           state.messageArray.push(state.selectedPlayers[1].nameLast + " steals the ball!");
@@ -337,19 +346,19 @@ class App extends React.Component {
       let stealMod = (player.ballHandle + player.athleticism - state.selectedPlayers[0].steal - state.selectedPlayers[0].athleticism) / 100;
 
       let keepBall = .90 + stealMod;
-      console.log(keepBall);
+      console.log("P2 "+keepBall);
       if (keepBall > .95) {
         keepBall = .95;
       }
-      if (keepBall < .75 && keepBall > .5) {
-        keepBall = .75;
+      if (keepBall < .80 && keepBall > .5) {
+        keepBall = .80;
       }
       if (keepBall <= .5) {
-        keepBall = .6;
+        keepBall = .65;
       }
       console.log(keepBall);
 
-      if (Math.random() > .5) {
+      if (Math.random() < .55) {
 
         if (Math.random() > keepBall) {
           state.messageArray.push(state.selectedPlayers[0].nameLast + " steals the ball!");
@@ -685,15 +694,14 @@ class App extends React.Component {
     let state = Object.assign({}, this.state);
     let player1 = state.selectedPlayers[0];
     let player2 = state.selectedPlayers[1];
-    let player1HA = player1.heightInches + player1.athleticism;
-    let player2HA = player2.heightInches + player2.athleticism;
-
-
+    let heightDiff = player1.heightInches - player2.heightInches;
+    let athDiff = player1.athleticism - player2.athleticism;
+   
     if (state.selectedPlayers.indexOf(player) === 0) {
 
       if (player.currentPlay === "threePts") {
-        let mod = (player1.threePts + player1HA - player2.shotCont - player2HA) / 100;
-        let num = .45 + mod;
+        let mod = (player1.threePts - player2.shotCont + (2*heightDiff) + athDiff) / 100;
+        let num = .40 + mod;
 
         console.log("1threePts " + num);
         if (num > .9) {
@@ -725,7 +733,7 @@ class App extends React.Component {
 
       if (player.currentPlay === "layup") {
 
-        let mod = (player1.layup + player1HA +(1*player1.heightInches)- player2.block - player2HA - (1*player2.heightInches)) / 100;
+        let mod = (player1.layup - player2.block + (2*heightDiff) + (athDiff) ) / 100;
         let num = .5 + mod;
         console.log("1layup " + num);
         if (num > .9) {
@@ -753,7 +761,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "dunk") {
-        let mod = (player1.dunk + player1HA +(1*player1.heightInches)- player2.block - player2HA - (1*player2.heightInches)) / 100;
+        let mod = (player1.dunk - player2.block +(2*heightDiff) + athDiff) / 100;
         let num = .5 + mod;
         console.log("1dunk " + num);
         if (num > .9) {
@@ -781,7 +789,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "midShot") {
-        let mod = (player1.midShot + player1HA - player2.shotCont - player2HA) / 100;
+        let mod = (player1.midShot - player2.shotCont + (2*heightDiff) + athDiff) / 100;
         let num = .5 + mod;
         console.log("1midShot " + num);
         if (num > .9) {
@@ -809,7 +817,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "lowPost") {
-        let mod = (player1.insideShot + player1HA +(2*player1.heightInches)- player2.block - player2HA - (2*player2.heightInches)) / 100;
+        let mod = (player1.insideShot - player2.block + (2.5*heightDiff) + athDiff) / 100;
         let num = .5 + mod;
         console.log("1lowPost " + num);
         if (num > .9) {
@@ -838,8 +846,8 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "fadeAway") {
-        let mod = (player1.insideShot + player1HA - (.9 * player2.shotCont) - player2HA) / 100;
-        let num = .45 + mod;
+        let mod = (player1.midShot - (.8*player2.shotCont) + (2*heightDiff) + athDiff) / 100;
+        let num = .40 + mod;
         console.log("1fadeAway " + num);
         if (num > .9) {
           num = .9;
@@ -865,7 +873,7 @@ class App extends React.Component {
         }
       }
       if (player.currentPlay === "hookShot") {
-        let mod = (player1.insideShot + player1HA +(2*player1.heightInches)- (.9 * player2.block) - player2HA-(2*player2.heightInches)) / 100;
+        let mod = (player1.insideShot - (.8*player2.block) + (2*heightDiff) + athDiff) / 100;
         let num = .5 + mod;
         console.log("1hookShot " + num);
         if (num > .9) {
@@ -898,8 +906,8 @@ class App extends React.Component {
 
 
       if (player.currentPlay === "threePts") {
-        let mod = (player2.threePts + player2HA - player1.shotCont - player1HA) / 100;
-        let num = .45 + mod;
+        let mod = (player2.threePts - player1.shotCont - (2*heightDiff) - athDiff) / 100;
+        let num = .40 + mod;
         console.log("2threePts " + num);
         if (num > .9) {
           num = .9;
@@ -928,7 +936,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "layup") {
-        let mod = (player2.layup + player2HA +(1*player2.heightInches)- player1.block - player1HA-(1*player1.heightInches)) / 100;
+        let mod = (player2.layup - player1.block - (2*heightDiff) - athDiff) / 100;
         let num = .5 + mod;
         console.log("2layup " + num);
         if (num > .9) {
@@ -956,7 +964,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "dunk") {
-        let mod = (player2.dunk + player2HA +(1*player2.heightInches)- player1.block - player1HA-(1*player1.heightInches)) / 100;
+        let mod = (player2.dunk - player1.block - (2*heightDiff) - athDiff) / 100;
         let num = .5 + mod;
         console.log("2dunk " + num);
         if (num > .9) {
@@ -984,7 +992,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "midShot") {
-        let mod = (player2.midShot + player2HA - player1.shotCont - player1HA) / 100;
+        let mod = (player2.midShot - player1.shotCont - (2*heightDiff) - athDiff) / 100;
         let num = .5 + mod;
         console.log("2midShot " + num);
         if (num > .9) {
@@ -1012,7 +1020,7 @@ class App extends React.Component {
       }
 
       if (player.currentPlay === "lowPost") {
-        let mod = (player2.insideShot + player2HA +(2*player2.heightInches)- player1.block - player1HA-(2*player1.heightInches)) / 100;
+        let mod = (player2.insideShot - player1.block - (2.5*heightDiff) - athDiff) / 100;
         let num = .5 + mod;
         console.log("2lowPost " + num);
         if (num > .9) {
@@ -1040,7 +1048,7 @@ class App extends React.Component {
 
       }
       if (player.currentPlay === "hookShot") {
-        let mod = (player2.insideShot + player2HA +(2*player2.heightInches)- (.9 * player1.block) - player1HA-(2*player1.heightInches)) / 100;
+        let mod = (player2.insideShot - (.8*player1.block) - (2*heightDiff) - athDiff) / 100;
         let num = .5 + mod;
         console.log("2hookShot " + num);
         if (num > .9) {
@@ -1067,8 +1075,8 @@ class App extends React.Component {
         }
       }
       if (player.currentPlay === "fadeAway") {
-        let mod = (player2.insideShot + player2HA - (.9 * player1.shotCont) - player1HA) / 100;
-        let num = .45 + mod;
+        let mod = (player2.midShot - (.8*player1.shotCont) - (2*heightDiff) - athDiff) / 100;
+        let num = .40 + mod;
         console.log("2fadeAway " + num);
         if (num > .9) {
           num = .9;
@@ -1101,7 +1109,9 @@ class App extends React.Component {
     let state = Object.assign({}, this.state);
     let player1 = state.selectedPlayers[0];
     let player2 = state.selectedPlayers[1];
-    let rebMod = (player1.rebounding + (1.2*player1.heightInches) + (1 * player1.athleticism) - player2.rebounding - (1.2*player2.heightInches) - (1 * player2.athleticism)) / 100;
+    let heightDiff = player1.heightInches - player2.heightInches;
+    let athDiff = player1.athleticism - player2.athleticism; 
+    let rebMod = (player1.rebounding - player2.rebounding + heightDiff + athDiff) / 100;
     let reb = .5 + rebMod;
     console.log(reb);
     if (reb < .1) {
